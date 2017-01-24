@@ -3,7 +3,7 @@
 <title>Code is Fun!</title>
 <style>
 body {
-    font-size: 2em;
+    font-size: 1.8em;
     width: 40em;
     margin: 2em auto;
     background: #ddd;
@@ -21,6 +21,17 @@ h1 {
     background: white;
 }
 
+#banana-img, #apple-img {
+    width: 3em;
+    height: 3em;
+    vertical-align: middle;
+}
+
+#banana-img {
+    display:none;
+}
+
+
 #percent {
     height: 2em;
 }
@@ -37,16 +48,11 @@ input {
     margin: 0px auto;
 }
 
-img {
-    width: 3em;
-    height: 3em;
-    vertical-align: middle;
+#rainbow {
+	height: 6em;
+	width: 6em;
+	display:none;
 }
-
-#banana-img {
-    display:none;
-}
-
 </style>
 </head>
 
@@ -60,7 +66,7 @@ img {
 
 <div class="task">
     <p>A is for Apple
-    <img src="apple.jpg" alt="Apple"></p>
+    <img id="apple-img" src="apple.jpg" alt="Apple"></p>
     <p>B is for <input id="banana" value="Bananana">
     <img id="banana-img" src="banana.jpg" alt="Banana"></p>
 </div>
@@ -83,6 +89,7 @@ img {
     </p>
 
     <div id="box">
+		<img id="rainbow" src="rainbow.svg">
     </div>
 </div>
 
@@ -104,8 +111,13 @@ num.onchange = num.onkeyup = percentHandler;
 
 /** Change the color of the box */
 document.getElementById('color').onkeyup = function(evt) {
-    var colorful = document.getElementById('box');
-    colorful.style.background = this.value;
+	if (this.value.toLowerCase() === 'rainbow') {
+		document.getElementById('rainbow').style.display = 'inline';
+		document.getElementById('box').style.background = '';
+	} else {
+		document.getElementById('rainbow').style.display = 'none';
+		document.getElementById('box').style.background = this.value;
+	}
 };
 </script>
 </body>
